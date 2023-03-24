@@ -1,22 +1,20 @@
 from typing import Union, List, Dict
+from src.insights.jobs import read
 
 
 def get_max_salary(path: str) -> int:
-    """Get the maximum salary of all jobs
+    data = read(path)
+    filter_data = [
+        types for types in data if types["max_salary"] != ''
+        and types["max_salary"] != 'invalid'
+    ]
 
-    Must call `read`
+    salary_max = 0
+    for values in filter_data:
+        if int(values["max_salary"]) > salary_max:
+            salary_max = int(values["max_salary"])
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The maximum salary paid out of all job opportunities
-    """
-    raise NotImplementedError
+    return salary_max
 
 
 def get_min_salary(path: str) -> int:
