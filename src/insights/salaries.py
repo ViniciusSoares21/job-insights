@@ -55,7 +55,6 @@ def filter_by_salary_range(
     salary: Union[str, int]
 ) -> List[Dict]:
     filter_salary = []
-    matches_salary = False
     for job in jobs:
         matches_salary = matches_salary_range(job, salary)
         if matches_salary:
